@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private int extraJumps;
     public int extraJumpValue;
 
-    /*private Animator anim;*/
+    private Animator anim;
 
 
 
@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         extraJumps = extraJumpValue;
         rb = GetComponent<Rigidbody2D>();
-        /*anim = GetComponent<Animator>();*/
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
 
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-/*
+
         if (moveInput == 0)
         {
             anim.SetBool("isRunning", false);
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isRunning", true);
 
-        }*/
+        }
 
 
     }
@@ -77,13 +77,14 @@ public class PlayerController : MonoBehaviour
         if (isGrounded == true)
         {
             extraJumps = extraJumpValue;
-            /*anim.SetBool("isJumping", false);*/
+            anim.SetBool("isJumping", false);
+
         }
-       /* else
+        else
         {
             anim.SetBool("isJumping", true);
         }
-*/
+
 
         if (Input.GetKeyDown(KeyCode.W) && extraJumps > 0)
         {
@@ -100,8 +101,6 @@ public class PlayerController : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        transform.Rotate(0f, 180f, 0);
     }
 }
