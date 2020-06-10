@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public float health = 100f;
     private float moveInput;
     private Rigidbody2D rb;
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
-
+    public Enemy enemy;
 
     void Start()
     {
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
     {
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGrounded);
-
 
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
@@ -60,14 +60,10 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isRunning", true);
 
         }
-
-
     }
-
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -98,11 +94,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        anim.SetTrigger("GetHit");
+        if (health <= 0)
+        {
+            enemy.playerAlive = false;
+            anim.SetTrigger("Death");
+            Destroy(gameObject,1f);
+        }
+    }
 
     void Flip()
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0);
     }
+
+   
 }

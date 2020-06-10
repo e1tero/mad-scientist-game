@@ -10,9 +10,14 @@ public class UIHelper : MonoBehaviour
 
     [Header("Класс оружия")]
     public Weapon weapon;
-    
+
+    [Header("Player")]
+    public Text playerHealth;
+    public PlayerController player;
+
     void Update()
     {
         slider.value = weapon.workingTime;
+        playerHealth.text = player.health.ToString();
     }
 }

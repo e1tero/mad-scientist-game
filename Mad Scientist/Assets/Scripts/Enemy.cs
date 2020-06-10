@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     Transform player;
 
     [SerializeField]
-    float attackRange;
+    public float attackRange;
 
     [SerializeField]
     float agroRange;
@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
 
     public int health = 100;
     private Animator anim;
+    public Collider2D coll;
+    public int damage = 10;
+    public bool playerAlive = true;
 
     public void Start()
     {
@@ -30,9 +33,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("playerAlive = " + playerAlive);
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         
-        if (distanceToPlayer < agroRange)
+        if (distanceToPlayer < agroRange && playerAlive == true)
         {
             if (distanceToPlayer > attackRange)
             {
@@ -45,8 +49,12 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("isAttacking", true);
             }
         }
-       
-    
+        
+        else if (distanceToPlayer > agroRange || playerAlive == false)
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", false);
+        }
     }
 
     void ChasePlayer()
@@ -68,16 +76,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health = -damage;
-
-        if (health <= 0)
-        {
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isElectring", true);
-            rb2d.velocity = new Vector2(0, 0);
-            Destroy(gameObject, 0.6f);
-        }
-       
+        health -= damage;
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isElectring", true);
+        rb2d.velocity = new Vector2(0, 0);
+        Destroy(gameObject, 0.6f);
     }
 
 }

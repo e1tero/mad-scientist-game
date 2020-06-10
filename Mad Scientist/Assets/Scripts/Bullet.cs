@@ -12,10 +12,6 @@ public class Bullet : MonoBehaviour
         {
             enemy.TakeDamage(damage);
             enemy.GetComponent<Animator>().SetBool("isElectring", true);
-        }
-        
+        } 
     }
-
-
-
 }
