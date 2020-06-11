@@ -18,12 +18,12 @@ public class Enemy : MonoBehaviour
     float moveSpeed;
 
     Rigidbody2D rb2d;
+    public PlayerController mainPlayer;
 
     public int health = 100;
     private Animator anim;
-    public Collider2D coll;
     public int damage = 10;
-    public bool playerAlive = true;
+    private bool facingRight = true;
 
     public void Start()
     {
@@ -33,24 +33,23 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("playerAlive = " + playerAlive);
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         
-        if (distanceToPlayer < agroRange && playerAlive == true)
+        if (distanceToPlayer < agroRange)
         {
             if (distanceToPlayer > attackRange)
             {
                 ChasePlayer();
             }
             
-            else if (distanceToPlayer <= attackRange)
+            else if (distanceToPlayer <= attackRange && mainPlayer.playerIsAlive)
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttacking", true);
             }
         }
         
-        else if (distanceToPlayer > agroRange || playerAlive == false)
+        else if (distanceToPlayer > agroRange)
         {
             anim.SetBool("isWalking", false);
             anim.SetBool("isAttacking", false);
@@ -65,13 +64,21 @@ public class Enemy : MonoBehaviour
         if (transform.position.x < player.position.x)
         {
             rb2d.velocity = new Vector2(moveSpeed, 0);
-            GetComponent<SpriteRenderer>().flipX = true;
+            if (facingRight)
+            {
+                Flip();
+            }
+
         }
         else if (transform.position.x > player.position.x)
         {
             rb2d.velocity = new Vector2(-moveSpeed, 0);
-            GetComponent<SpriteRenderer>().flipX = false;
+            if (!facingRight)
+            {
+                Flip();
+            }
         }
+
     }
 
     public void TakeDamage(int damage)
@@ -81,6 +88,12 @@ public class Enemy : MonoBehaviour
         anim.SetBool("isElectring", true);
         rb2d.velocity = new Vector2(0, 0);
         Destroy(gameObject, 0.6f);
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0);
     }
 
 }

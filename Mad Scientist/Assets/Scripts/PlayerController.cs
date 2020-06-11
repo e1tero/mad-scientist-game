@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     public Enemy enemy;
+    public bool playerIsAlive = true;
 
     void Start()
     {
@@ -100,9 +101,10 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("GetHit");
         if (health <= 0)
         {
-            enemy.playerAlive = false;
+            Destroy(gameObject.GetComponent<CircleCollider2D>());
+            playerIsAlive = false;
             anim.SetTrigger("Death");
-            Destroy(gameObject,1f);
+            //Destroy(gameObject,1f);
         }
     }
 
