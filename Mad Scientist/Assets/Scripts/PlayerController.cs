@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
-    public Enemy enemy;
     public bool playerIsAlive = true;
 
     void Start()
@@ -36,6 +35,7 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
+     
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGrounded);
 
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if (facingRight == false && moveInput > 0)
         {
             Flip();
-        }
+        }  
         else if (facingRight == true && moveInput < 0)
         {
             Flip();
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject.GetComponent<CircleCollider2D>());
             playerIsAlive = false;
             anim.SetTrigger("Death");
-            //Destroy(gameObject,1f);
+            Destroy(gameObject,1f);
         }
     }
 
@@ -112,7 +112,10 @@ public class PlayerController : MonoBehaviour
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0);
+        /*Vector3 tempScale = transform.localScale;
+        tempScale.x *= -1;
+        transform.localScale = tempScale;*/
     }
 
-   
+
 }

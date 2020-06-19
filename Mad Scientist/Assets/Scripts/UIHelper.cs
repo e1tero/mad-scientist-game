@@ -9,12 +9,17 @@ public class UIHelper : MonoBehaviour
     public Slider slider;
 
     [Header("Класс оружия")]
-    public Weapon weapon;
+    Weapon weapon;
 
     [Header("Player")]
     public Text playerHealth;
-    public PlayerController player;
+    PlayerController player;
 
+    private void Start()
+    {
+        weapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Weapon>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
     void Update()
     {
         slider.value = weapon.workingTime;

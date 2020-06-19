@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    Transform player;
 
     [SerializeField]
     public float attackRange;
@@ -18,17 +16,19 @@ public class Enemy : MonoBehaviour
     float moveSpeed;
 
     Rigidbody2D rb2d;
-    public PlayerController mainPlayer;
+    Transform player;
 
     public int health = 100;
     private Animator anim;
     public int damage = 10;
     private bool facingRight = true;
 
-    public void Start()
+    public void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
                 ChasePlayer();
             }
             
-            else if (distanceToPlayer <= attackRange && mainPlayer.playerIsAlive)
+            else if (distanceToPlayer <= attackRange)
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttacking", true);
