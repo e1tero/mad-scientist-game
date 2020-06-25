@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         anim.SetBool("isAttacking", false);
-        anim.SetBool("isElectring", true);
+        anim.SetTrigger("GetHit");
         rb2d.velocity = new Vector2(0, 0);
         Destroy(gameObject, 0.6f);
     }

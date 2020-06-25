@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb;
 
+
     private bool facingRight = true;
 
     private bool isGrounded;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

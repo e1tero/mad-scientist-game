@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject bullet;
+    public Transform shootPosition;
     public int damage = 1;
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
