@@ -18,17 +18,25 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb2d;
     Transform player;
 
-    public int health = 100;
+    public float health = 100;
     private Animator anim;
     public int damage = 10;
     private bool facingRight = true;
 
+    public HealthBar healthBar;
+    public GameObject healthBarObject;
+    public GameObject hitBox;
     public void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
+    }
+
+    private void Start()
+    {
+        healthBar.SetMaxHealth((int)health);
     }
 
     private void Update()
@@ -81,13 +89,22 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         anim.SetBool("isAttacking", false);
         anim.SetTrigger("GetHit");
-        rb2d.velocity = new Vector2(0, 0);
-        Destroy(gameObject, 0.6f);
+        healthBar.SetHealth(health);
+        
+        if (health <= 0)
+        {
+            hitBox.GetComponent<BoxCollider2D>().enabled = false;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            this.GetComponent<CircleCollider2D>().enabled = false;
+            healthBarObject.SetActive(false);
+            anim.SetTrigger("Death");
+            Destroy(gameObject, 1f);
+        }
     }
 
     void Flip()

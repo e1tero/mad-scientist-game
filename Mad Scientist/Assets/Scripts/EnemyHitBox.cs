@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHitBox : MonoBehaviour
 {
     int damage = 1;
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -13,5 +13,6 @@ public class EnemyHitBox : MonoBehaviour
             player.TakeDamage(damage);
         }
     }
+
 
 }
