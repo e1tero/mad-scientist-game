@@ -7,6 +7,10 @@ TagManager:
   - GGWP
   - hitBox
   - Enemy
+  - PlayerHealthBar
+  - healthBoost
+  - speedBoost
+  - jumpBoost
   layers:
   - Default
   - TransparentFX
@@ -20,8 +24,8 @@ TagManager:
   - Enemy
   - 
   - Player
-  - 
-  - 
+  - ScientistV1
+  - ScientistV2
   - 
   - 
   - 

@@ -10,10 +10,12 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public float workingTime;
     public float reloadTime;
-    
+    public UIButtonInfo buttonShoot;
+
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (buttonShoot.isDown)
         {
             bullet.SetActive(true);
             workingTime -= Time.deltaTime;
@@ -22,6 +24,9 @@ public class Weapon : MonoBehaviour
         {
             bullet.SetActive(false);
             workingTime += Time.deltaTime * 0.5f;
+
+            if (workingTime > 4)
+                workingTime = 4;
         }
 
         

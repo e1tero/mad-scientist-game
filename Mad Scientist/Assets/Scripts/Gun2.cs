@@ -14,15 +14,12 @@ public class Gun2 : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.F) && delay == false)
-        {
-            anim.SetTrigger("Shoot");
-            Instantiate(bullet, shootPosition.position, shootPosition.rotation);
-            delay = true;
-            StartCoroutine("FiringDelay");
-        }
+        anim.SetTrigger("Shoot");
+        Instantiate(bullet, shootPosition.position, shootPosition.rotation);
+        delay = true;
+        StartCoroutine("FiringDelay");
     }
 
     private IEnumerator FiringDelay()
@@ -30,4 +27,5 @@ public class Gun2 : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         delay = false;
     }
+
 }
