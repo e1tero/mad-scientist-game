@@ -11,6 +11,9 @@ TagManager:
   - healthBoost
   - speedBoost
   - jumpBoost
+  - Joystick
+  - shootControlHUD
+  - shootPos
   layers:
   - Default
   - TransparentFX

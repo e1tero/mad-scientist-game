@@ -32,13 +32,14 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private HealthBar healthBar;
 
-    public Joystick joystick;
+    private Joystick joystick;
 
     public bool playerIsAlive = true;
 
     private void Awake()
     {
         healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<HealthBar>();
+        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
     }
     void Start()
     {
@@ -148,33 +149,30 @@ public class PlayerController : MonoBehaviour
         {
             health = maxHealth;
             healthBar.SetHealth(health);
-            collision.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = -0.5f;
-
-            Destroy(collision.gameObject, 1f);
+            DestroyBoost(collision);
         }
             
         if (collision.gameObject.tag == "speedBoost")
         {
             speed *= 2f;
             StartCoroutine("NormalSpeed");
-            collision.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = -0.5f;
-            Destroy(collision.gameObject, 1f);
+            DestroyBoost(collision);
         }
 
         if (collision.gameObject.tag == "jumpBoost")
         {
             jumpForce *= 1.5f;
             StartCoroutine("NormalJump");
-            collision.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = -0.5f;
-
-            Destroy(collision.gameObject, 1f);
+            DestroyBoost(collision);
         }
+    }
+
+    public void DestroyBoost(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<Animator>().SetTrigger("Destroy");
+        collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = -0.5f;
+        Destroy(collision.gameObject, 1f);
     }
 
     IEnumerator NormalSpeed()

@@ -10,9 +10,13 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public float workingTime;
     public float reloadTime;
-    public UIButtonInfo buttonShoot;
+    private UIButtonInfo buttonShoot;
 
 
+     private void Start()
+     {
+        buttonShoot = GameObject.FindGameObjectWithTag("shootControlHUD").GetComponent<UIButtonInfo>();
+     }
     void Update()
     {
         if (buttonShoot.isDown)

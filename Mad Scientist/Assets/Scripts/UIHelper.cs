@@ -13,7 +13,6 @@ public class UIHelper : MonoBehaviour
     Weapon weapon;
 
     [Header("Player")]
-    public Text playerHealth;
     PlayerController player;
 
     private GameObject scientist;

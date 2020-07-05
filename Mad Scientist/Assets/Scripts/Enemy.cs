@@ -26,17 +26,21 @@ public class Enemy : MonoBehaviour
     public HealthBar healthBar;
     public GameObject healthBarObject;
     public GameObject hitBox;
-    public void Awake()
+   /* public void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-    }
+    }*/
 
     private void Start()
     {
         healthBar.SetMaxHealth((int)health);
+
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
