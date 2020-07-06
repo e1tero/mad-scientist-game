@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
    
     public float jumpForce;
     private float normalJumpForce;
+
     
     public float health = 20f;
     private float maxHealth;
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour
             playerIsAlive = false;
             anim.SetTrigger("Death");
             Destroy(gameObject,1f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 

@@ -6,6 +6,7 @@ public class Gun2 : MonoBehaviour
 {
     private Transform shootPosition;
     public GameObject bullet;
+    private GameObject player;
     private bool delay = false;
     public float delayTime = 1f;
     private Animator anim;
