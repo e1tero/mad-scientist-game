@@ -66,4 +66,12 @@ public class ShopSystem : MonoBehaviour
         Damage.text = 6.ToString();
     }
 
+    public void SelectThird()
+    {
+        _static = 3;
+        Speed.text = 4.ToString();
+        Health.text = 120.ToString();
+        Damage.text = 10.ToString();
+    }
+
 }

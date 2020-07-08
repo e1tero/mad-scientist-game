@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -429,12 +429,12 @@ PrefabInstance:
     - target: {fileID: 7859768115427148380, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.386807
+      value: 7.75
       objectReference: {fileID: 0}
     - target: {fileID: 7859768115427148380, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1950903
+      value: -1.04
       objectReference: {fileID: 0}
     - target: {fileID: 7859768115427148380, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 7859768115427148380, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7859768115427148380, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
@@ -481,6 +481,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7859768115427148382, guid: b635400059e4ce64ea2f0a11c9aed8e7,
+        type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7859768115427148376, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
       propertyPath: health
@@ -491,20 +496,15 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 7859768114283864119, guid: b635400059e4ce64ea2f0a11c9aed8e7,
-        type: 3}
-      propertyPath: damage
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859768115427148382, guid: b635400059e4ce64ea2f0a11c9aed8e7,
-        type: 3}
-      propertyPath: m_Mass
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 7859768115427148383, guid: b635400059e4ce64ea2f0a11c9aed8e7,
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859768114283864119, guid: b635400059e4ce64ea2f0a11c9aed8e7,
+        type: 3}
+      propertyPath: damage
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b635400059e4ce64ea2f0a11c9aed8e7, type: 3}
@@ -1461,7 +1461,7 @@ PrefabInstance:
     - target: {fileID: 5137585363050558545, guid: 6ab64344c19b6b843a4927a2004f21cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5137585363050558545, guid: 6ab64344c19b6b843a4927a2004f21cf,
         type: 3}
@@ -1478,15 +1478,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5137585362429397635, guid: 6ab64344c19b6b843a4927a2004f21cf,
-        type: 3}
-      propertyPath: m_TagString
-      value: shootPos
-      objectReference: {fileID: 0}
     - target: {fileID: 5137585363050558549, guid: 6ab64344c19b6b843a4927a2004f21cf,
         type: 3}
       propertyPath: m_Mass
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137585362429397635, guid: 6ab64344c19b6b843a4927a2004f21cf,
+        type: 3}
+      propertyPath: m_TagString
+      value: shootPos
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5137585363050558544, guid: 6ab64344c19b6b843a4927a2004f21cf, type: 3}
